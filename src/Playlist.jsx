@@ -26,7 +26,7 @@ function Playlist(props) {
     const [source, setSource] = useState('');
     var startCheck = 0;
     const [current, setCurrent] = useState(0);
-    const apiKey = "AIzaSyALDJ1k8Fv_vr2EQDxVqjcmZOs7jaEDXyU";
+    const apiKey = "";
 
     useEffect(() => {
         //youtube
@@ -82,8 +82,6 @@ function Playlist(props) {
                   ) {
                   startCheck++;
                   if (startCheck === 1) {
-                    console.log('Track ended', current, playlist.length);
-                    console.log(state);
                     document.getElementById("next").click();
                   }
 
@@ -124,7 +122,7 @@ function Playlist(props) {
         if (playlist[0].type === "spotify") {
             setSource("");
             fetch("https://api.spotify.com/v1/me/player/play?device_id=" + device, {method: 'PUT', body: JSON.stringify({ uris: [playlist[0].uri] }), headers: {Authorization: "Bearer " + props.token}})
-        .then(res => {setCurrent(0); console.log(current, playlist)});
+        .then(res => {setCurrent(0)});
         }
         else {
             fetch("https://api.spotify.com/v1/me/player/pause", {method: 'PUT', headers: {Authorization: "Bearer " + props.token}})
@@ -138,7 +136,6 @@ function Playlist(props) {
         if (playlist[current].type !== "spotify") {
             //iframe.contentWindow.postMessage('{"event":"command","func":"' + 'stopVideo' + '","args":""}', '*');
             return;
-            console.log("x");
         }
         sPlayer.togglePlay()
     }
@@ -147,7 +144,7 @@ function Playlist(props) {
         if (playlist[(current + 1)%playlist.length].type === "spotify") {
             setSource("");
             fetch("https://api.spotify.com/v1/me/player/play?device_id=" + device, {method: 'PUT', body: JSON.stringify({ uris: [playlist[(current + 1)%playlist.length].uri] }), headers: {Authorization: "Bearer " + props.token}})
-                .then(res => {setCurrent((current + 1)%playlist.length); console.log(current, playlist)});
+                .then(res => {setCurrent((current + 1)%playlist.length) });
         }
         else {
             fetch("https://api.spotify.com/v1/me/player/pause", {method: 'PUT', headers: {Authorization: "Bearer " + props.token}})
@@ -161,7 +158,7 @@ function Playlist(props) {
         if (playlist[(current - 1 + playlist.length)%playlist.length].type === "spotify") {
             setSource("");
             fetch("https://api.spotify.com/v1/me/player/play?device_id=" + device, {method: 'PUT', body: JSON.stringify({ uris: [playlist[(current - 1 + playlist.length)%playlist.length].uri] }), headers: {Authorization: "Bearer " + props.token}})
-            .then(res => {setCurrent((current - 1 + playlist.length)%playlist.length); console.log(current, playlist)});
+            .then(res => {setCurrent((current - 1 + playlist.length)%playlist.length) });
         }
         else {
             fetch("https://api.spotify.com/v1/me/player/pause", {method: 'PUT', headers: {Authorization: "Bearer " + props.token}})
@@ -196,7 +193,7 @@ function Playlist(props) {
                     </button>
                     </div>
                     currently playing: 
-            {(playlist.length > 0 && !is_paused)? <div><div>{playlist[current].name}</div><img src={playlist[current].cover}/></div>: <>None</>}
+            {(playlist.length > 0 && (playlist[current].type === 'youtube' || !is_paused))? <div><div>{playlist[current].name}</div><img src={playlist[current].cover}/></div>: <>None</>}
                     <div>
         </div>
         </div>

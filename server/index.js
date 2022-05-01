@@ -24,7 +24,6 @@ var generateRandomString = function (length) {
 };
 
 app.get('/auth/login', (req, res) => {
-  console.log("login");
     var scope = "streaming \
                  user-read-email \
                  user-read-private"
@@ -43,7 +42,6 @@ app.get('/auth/login', (req, res) => {
   })
 
 app.get('/auth/callback', (req, res) => {
-  console.log("callback");
     var code = req.query.code;
   
     var authOptions = {
@@ -63,7 +61,6 @@ app.get('/auth/callback', (req, res) => {
     request.post(authOptions, function(error, response, body) {
       if (!error && response.statusCode === 200) {
         access_token = body.access_token;
-        console.log("new token: " + body.access_token);
         res.redirect('/')
       }
       else {
@@ -73,7 +70,6 @@ app.get('/auth/callback', (req, res) => {
   })
 
   app.get('/auth/search', (req, res) => {
-    console.log("search", req.query.code);
       var code = req.query.code;
     
       var authOptions = {
@@ -93,7 +89,6 @@ app.get('/auth/callback', (req, res) => {
       request.post(authOptions, function(error, response, body) {
         if (!error && response.statusCode === 200) {
           access_token = body.access_token;
-          console.log("new token: " + body.access_token);
           res.redirect('/')
         }
         else {
@@ -103,7 +98,6 @@ app.get('/auth/callback', (req, res) => {
     })
 
 app.get('/auth/token', (req, res) => {
-    console.log("token");
     res.json(
        {
           access_token: access_token
