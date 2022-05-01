@@ -1,0 +1,91 @@
+.App {
+  text-align: center;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(70px + 2vmin);
+  color: aliceblue;
+}
+
+.subtitle {
+  font-size: calc(10px + 2vmin);
+}
+
+.btn-spotify {
+  margin: 30px;
+  padding: 10px;
+  background-color: aliceblue;
+  border-radius: 8px;
+
+}
+
+a:link {
+  color: #282c34;
+  text-decoration: none;
+}
+
+a:visited {
+  color: #282c34;
+  text-decoration: none;
+}
+
+.Main {
+  align-items:center
+}
+
+.Left {
+  align-items: center;
+  min-height: 100vh;
+  position: absolute;
+  left: 0px;
+  width: 50%;
+  justify-content: center;
+}
+.Right {
+  min-height: 100vh;
+  position: absolute;
+  right: 0px;
+  width: 50%;
+  overflow-y: scroll;
+}
+
+.SSearch {
+  height: 50vh;
+}
+
+.YSearch {
+  height: 50vh;
+}
+
+input {
+  padding: 10px 10px;
+  line-height: 28px;
+  margin-top: 30px;
+  min-width: 100vh;
+}
+
+.add {
+  margin-right: 10px;
+  display:inline-block;
+}
+.info {
+  max-width: 80%;
+  overflow: hidden;
+  display:inline-block;
+}
+
+.results {
+  overflow-y: auto;
+  max-height: 70%;
+}
+
+img {
+  height:30%;
+    max-height:300px;
+}
